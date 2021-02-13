@@ -18,13 +18,13 @@
 <body>
   <div>
     <span>Show:</span>
-    <a target="_blank" href="http://wine-token.herokuapp.com/blacklist">
+    <a target="_blank" href="https://wine-token.herokuapp.com/blacklist">
       Blacklist
     </a>
-    <a target="_blank" href="http://wine-token.herokuapp.com/whitelist">
+    <a target="_blank" href="https://wine-token.herokuapp.com/whitelist">
       Whitelist
     </a>
-    <a target="_blank" href="http://wine-token.herokuapp.com/graylist">
+    <a target="_blank" href="https://wine-token.herokuapp.com/graylist">
       Graylist
     </a>
   </div>
@@ -69,7 +69,7 @@
       obj[action] = action === 'reset' ? true : names;
       obj.key = password;
 
-      await axios.post(`http://wine-token.herokuapp.com/${list}`, obj);
+      await axios.post(`https://wine-token.herokuapp.com/${list}`, obj);
       $(this).removeAttr('disabled');
     });
   </script>
