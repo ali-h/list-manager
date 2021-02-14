@@ -29,6 +29,12 @@
     </a>
   </div>
   <div>
+    <span>Export:</span>
+    <button value="blacklist" class="export">Blacklist</button>
+    <button value="whitelist" class="export">Whitelist</button>
+    <button value="graylist" class="export">Graylist</button>
+  </div>
+  <div>
     <span>Auth Key:</span>
     <input type="password" id="password">
   </div>
@@ -71,6 +77,24 @@
 
       await axios.post(`https://wine-token.herokuapp.com/${list}`, obj);
       $(this).removeAttr('disabled');
+    });
+
+    $('.export').on('click', async function () {
+      const listName = $(this).val();
+      const response = await axios.get(`https://wine-token.herokuapp.com/${listName}`);
+      const list = response.data;
+      let string = '';
+      if (list.length) {
+        for (let i = 0; i < list.length; i += 1) {
+          string += list[i];
+          if (i !== list.length - 1) string += '\n';
+        }
+        var link = document.createElement('a');
+        link.download = `${listName}.csv`;
+        var blob = new Blob([string], {type: 'text/plain'});
+        link.href = window.URL.createObjectURL(blob);
+        link.click();
+      }
     });
   </script>
 </body>
